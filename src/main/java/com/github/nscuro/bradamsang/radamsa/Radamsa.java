@@ -28,7 +28,7 @@ public final class Radamsa {
     public void fuzz(final RadamsaParameters radamsaParameters) throws RadamsaException {
         if (!isValidRadamsaCommand(radamsaCommand)) {
             throw new RadamsaException(format("\"%s\" is not a valid radamsa command", radamsaCommand));
-        } else if (radamsaParameters.getBaseValue() == null) {
+        } else if (radamsaParameters.getSample() == null) {
             throw new RadamsaException("No baseValue provided");
         } else if (radamsaParameters.getOutputDirectoryPath() == null) {
             throw new RadamsaException("No output directory path provided");
@@ -36,16 +36,14 @@ public final class Radamsa {
 
         final List<String> commandLine = new ArrayList<>(CommandExecutor.parseCommand(radamsaCommand));
 
-        Optional
-                .ofNullable(radamsaParameters.getCount())
+        radamsaParameters.getCount()
                 .filter(count -> count > 0)
                 .ifPresent(count -> {
                     commandLine.add("-n");
                     commandLine.add(String.valueOf(count));
                 });
 
-        Optional
-                .ofNullable(radamsaParameters.getSeed())
+        radamsaParameters.getSeed()
                 .ifPresent(seed -> {
                     commandLine.add("-s");
                     commandLine.add(String.valueOf(seed));
@@ -61,7 +59,7 @@ public final class Radamsa {
         commandLine.add(outputPattern);
 
         try {
-            commandExecutor.execute(commandLine, radamsaParameters.getBaseValue());
+            commandExecutor.execute(commandLine, radamsaParameters.getSample());
         } catch (IOException e) {
             throw new RadamsaException("Failed to execute radamsa", e);
         }

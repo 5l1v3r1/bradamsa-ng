@@ -2,7 +2,6 @@ package com.github.nscuro.bradamsang.radamsa;
 
 import com.github.nscuro.bradamsang.io.CommandExecutor;
 import com.github.nscuro.bradamsang.io.ExecutionResult;
-import com.github.nscuro.bradamsang.radamsa.RadamsaParameters.ParametersBuilder;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -64,7 +63,7 @@ class RadamsaTest {
         @Test
         void shouldThrowExceptionWhenBaseValueIsNull() {
             assertThatExceptionOfType(RadamsaException.class)
-                    .isThrownBy(() -> radamsa.fuzz(getDefaultParametersBuilder().baseValue(null).build()))
+                    .isThrownBy(() -> radamsa.fuzz(getDefaultParametersBuilder().sample(null).build()))
                     .withMessageContaining("baseValue");
         }
 
@@ -83,13 +82,13 @@ class RadamsaTest {
 
             radamsa.fuzz(radamsaParameters);
 
-            verify(commandExecutorMock).execute(commandLineArgumentCaptor.capture(), eq(radamsaParameters.getBaseValue()));
+            verify(commandExecutorMock).execute(commandLineArgumentCaptor.capture(), eq(radamsaParameters.getSample()));
 
             assertThat(commandLineArgumentCaptor.getValue())
                     .containsExactlyInAnyOrder(
                             DUMMY_RADAMSA_COMMAND,
-                            "-n", radamsaParameters.getCount().toString(),
-                            "-s", radamsaParameters.getSeed().toString(),
+                            "-n", "111",
+                            "-s", "123",
                             "-o", "/radamsa_%n.out");
         }
 
@@ -134,11 +133,11 @@ class RadamsaTest {
                     .withCauseInstanceOf(IOException.class);
         }
 
-        private ParametersBuilder getDefaultParametersBuilder() {
+        private RadamsaParameters.Builder getDefaultParametersBuilder() {
             return RadamsaParameters
                     .builder()
                     .outputDirectoryPath(Paths.get("/"))
-                    .baseValue("test".getBytes(StandardCharsets.UTF_8))
+                    .sample("test".getBytes(StandardCharsets.UTF_8))
                     .seed(123L)
                     .count(111);
         }

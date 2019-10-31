@@ -134,7 +134,7 @@ final class IntruderPayloadGenerator implements IIntruderPayloadGenerator {
                 .builder()
                 .count(optionsProvider.getCount().orElse(null))
                 .seed(optionsProvider.getSeed().orElse(null))
-                .baseValue(baseValue)
+                .sample(baseValue)
                 .outputDirectoryPath(determineRadamsaOutputDirectoryPath())
                 .build();
 
