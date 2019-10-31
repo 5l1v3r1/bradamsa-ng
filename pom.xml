@@ -33,22 +33,17 @@
 
         <!-- Dependency versions -->
         <burp-extender-api.version>2.1</burp-extender-api.version>
-        <apache-commons-lang3.version>3.9</apache-commons-lang3.version>
-        <apache-commons-io.version>2.6</apache-commons-io.version>
-        <lombok.version>1.18.10</lombok.version>
-        <findbugs-jsr305.version>3.0.2</findbugs-jsr305.version>
         <intellij-forms-rt.version>7.0.3</intellij-forms-rt.version>
-        <slf4j.version>1.7.28</slf4j.version>
         <junit-jupiter.version>5.5.2</junit-jupiter.version>
         <junit-platform.version>1.5.2</junit-platform.version>
-        <assertj-version>3.13.2</assertj-version>
-        <mockito.version>3.0.0</mockito.version>
+        <assertj-version>3.14.0</assertj-version>
+        <mockito.version>3.1.0</mockito.version>
 
         <!-- Plugin versions -->
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
-        <maven-surefire-plugin.version>2.22.1</maven-surefire-plugin.version>
+        <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
         <maven-assembly-plugin.version>3.1.0</maven-assembly-plugin.version>
-        <jacoco-maven-plugin.version>0.8.3</jacoco-maven-plugin.version>
+        <jacoco-maven-plugin.version>0.8.5</jacoco-maven-plugin.version>
         <coveralls-maven-plugin.version>4.3.0</coveralls-maven-plugin.version>
         <checksum-maven-plugin.version>1.8</checksum-maven-plugin.version>
     </properties>
@@ -62,46 +57,9 @@
         </dependency>
 
         <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>${apache-commons-lang3.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
-            <version>${apache-commons-io.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>${lombok.version}</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>com.google.code.findbugs</groupId>
-            <artifactId>jsr305</artifactId>
-            <version>${findbugs-jsr305.version}</version>
-        </dependency>
-
-        <dependency>
             <groupId>com.intellij</groupId>
             <artifactId>forms_rt</artifactId>
             <version>${intellij-forms-rt.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>${slf4j.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-simple</artifactId>
-            <version>${slf4j.version}</version>
-            <scope>test</scope>
         </dependency>
 
         <dependency>
@@ -139,6 +97,18 @@
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
+            <version>${mockito.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-junit-jupiter</artifactId>
+            <version>${mockito.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-inline</artifactId>
             <version>${mockito.version}</version>
             <scope>test</scope>
         </dependency>
