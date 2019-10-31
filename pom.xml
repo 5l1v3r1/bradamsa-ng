@@ -33,6 +33,8 @@
 
         <!-- Dependency versions -->
         <burp-extender-api.version>2.1</burp-extender-api.version>
+        <commons-lang3.version>3.9</commons-lang3.version>
+        <commons-io.version>2.6</commons-io.version>
         <intellij-forms-rt.version>7.0.3</intellij-forms-rt.version>
         <junit-jupiter.version>5.5.2</junit-jupiter.version>
         <junit-platform.version>1.5.2</junit-platform.version>
@@ -54,6 +56,18 @@
             <artifactId>burp-extender-api</artifactId>
             <version>${burp-extender-api.version}</version>
             <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons-lang3.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons-io.version}</version>
         </dependency>
 
         <dependency>

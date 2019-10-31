@@ -2,7 +2,7 @@ package burp;
 
 import com.github.nscuro.bradamsang.BurpExtension;
 
-public class BurpExtender implements IBurpExtender {
+public final class BurpExtender implements IBurpExtender {
 
     private final BurpExtension burpExtension;
 
