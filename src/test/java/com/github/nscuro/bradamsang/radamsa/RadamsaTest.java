@@ -2,7 +2,7 @@ package com.github.nscuro.bradamsang.radamsa;
 
 import com.github.nscuro.bradamsang.io.CommandExecutor;
 import com.github.nscuro.bradamsang.io.ExecutionResult;
-import com.github.nscuro.bradamsang.radamsa.Parameters.ParametersBuilder;
+import com.github.nscuro.bradamsang.radamsa.RadamsaParameters.ParametersBuilder;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -77,19 +77,19 @@ class RadamsaTest {
 
         @Test
         void shouldCorrectlyExecuteRadamsaCommand() throws IOException, RadamsaException {
-            final Parameters parameters = getDefaultParametersBuilder().build();
+            final RadamsaParameters radamsaParameters = getDefaultParametersBuilder().build();
 
             final ArgumentCaptor<List<String>> commandLineArgumentCaptor = ArgumentCaptor.forClass(List.class);
 
-            radamsa.fuzz(parameters);
+            radamsa.fuzz(radamsaParameters);
 
-            verify(commandExecutorMock).execute(commandLineArgumentCaptor.capture(), eq(parameters.getBaseValue()));
+            verify(commandExecutorMock).execute(commandLineArgumentCaptor.capture(), eq(radamsaParameters.getBaseValue()));
 
             assertThat(commandLineArgumentCaptor.getValue())
                     .containsExactlyInAnyOrder(
                             DUMMY_RADAMSA_COMMAND,
-                            "-n", parameters.getCount().toString(),
-                            "-s", parameters.getSeed().toString(),
+                            "-n", radamsaParameters.getCount().toString(),
+                            "-s", radamsaParameters.getSeed().toString(),
                             "-o", "/radamsa_%n.out");
         }
 
@@ -135,7 +135,7 @@ class RadamsaTest {
         }
 
         private ParametersBuilder getDefaultParametersBuilder() {
-            return Parameters
+            return RadamsaParameters
                     .builder()
                     .outputDirectoryPath(Paths.get("/"))
                     .baseValue("test".getBytes(StandardCharsets.UTF_8))

@@ -25,19 +25,19 @@ public final class Radamsa {
         this.radamsaCommand = radamsaCommand;
     }
 
-    public void fuzz(final Parameters parameters) throws RadamsaException {
+    public void fuzz(final RadamsaParameters radamsaParameters) throws RadamsaException {
         if (!isValidRadamsaCommand(radamsaCommand)) {
             throw new RadamsaException(format("\"%s\" is not a valid radamsa command", radamsaCommand));
-        } else if (parameters.getBaseValue() == null) {
+        } else if (radamsaParameters.getBaseValue() == null) {
             throw new RadamsaException("No baseValue provided");
-        } else if (parameters.getOutputDirectoryPath() == null) {
+        } else if (radamsaParameters.getOutputDirectoryPath() == null) {
             throw new RadamsaException("No output directory path provided");
         }
 
         final List<String> commandLine = new ArrayList<>(CommandExecutor.parseCommand(radamsaCommand));
 
         Optional
-                .ofNullable(parameters.getCount())
+                .ofNullable(radamsaParameters.getCount())
                 .filter(count -> count > 0)
                 .ifPresent(count -> {
                     commandLine.add("-n");
@@ -45,13 +45,13 @@ public final class Radamsa {
                 });
 
         Optional
-                .ofNullable(parameters.getSeed())
+                .ofNullable(radamsaParameters.getSeed())
                 .ifPresent(seed -> {
                     commandLine.add("-s");
                     commandLine.add(String.valueOf(seed));
                 });
 
-        final String outputPattern = parameters
+        final String outputPattern = radamsaParameters
                 .getOutputDirectoryPath()
                 .resolve("radamsa_%n.out")
                 .toString()
@@ -61,7 +61,7 @@ public final class Radamsa {
         commandLine.add(outputPattern);
 
         try {
-            commandExecutor.execute(commandLine, parameters.getBaseValue());
+            commandExecutor.execute(commandLine, radamsaParameters.getBaseValue());
         } catch (IOException e) {
             throw new RadamsaException("Failed to execute radamsa", e);
         }

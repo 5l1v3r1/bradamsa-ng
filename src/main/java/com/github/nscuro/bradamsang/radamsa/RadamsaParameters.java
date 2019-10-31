@@ -7,7 +7,7 @@ import java.nio.file.Path;
 
 @Data
 @Builder
-public final class Parameters {
+public final class RadamsaParameters {
 
     private final Integer count;
 

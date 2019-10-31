@@ -1,7 +1,7 @@
 package com.github.nscuro.bradamsang;
 
 import burp.IIntruderPayloadGenerator;
-import com.github.nscuro.bradamsang.radamsa.Parameters;
+import com.github.nscuro.bradamsang.radamsa.RadamsaParameters;
 import com.github.nscuro.bradamsang.radamsa.Radamsa;
 import com.github.nscuro.bradamsang.radamsa.RadamsaException;
 import com.github.nscuro.bradamsang.wsl.WslPathConverter;
@@ -130,7 +130,7 @@ final class IntruderPayloadGenerator implements IIntruderPayloadGenerator {
     private void generatePayloads(final byte[] baseValue) throws RadamsaException {
         LOGGER.debug("Generating payloads");
 
-        final Parameters parameters = Parameters
+        final RadamsaParameters radamsaParameters = RadamsaParameters
                 .builder()
                 .count(optionsProvider.getCount().orElse(null))
                 .seed(optionsProvider.getSeed().orElse(null))
@@ -138,7 +138,7 @@ final class IntruderPayloadGenerator implements IIntruderPayloadGenerator {
                 .outputDirectoryPath(determineRadamsaOutputDirectoryPath())
                 .build();
 
-        radamsa.fuzz(parameters);
+        radamsa.fuzz(radamsaParameters);
     }
 
     @Nonnull
