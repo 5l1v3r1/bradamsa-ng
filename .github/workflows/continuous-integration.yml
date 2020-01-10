@@ -22,5 +22,5 @@ jobs:
         if: github.event_name == 'push'
         uses: actions/upload-artifact@v1
         with:
-          name: bradamsa-ng.jar
-          path: target/bradamsa-ng-1.0.0-SNAPSHOT-jar-with-dependencies.jar
+          name: bradamsa-ng-${{ github.ref }}
+          path: target/bradamsa-ng-*-jar-with-dependencies.jar
