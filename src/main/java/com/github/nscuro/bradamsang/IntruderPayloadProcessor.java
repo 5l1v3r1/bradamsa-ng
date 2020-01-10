@@ -1,9 +1,21 @@
 package com.github.nscuro.bradamsang;
 
 import burp.IIntruderPayloadProcessor;
-import org.apache.commons.lang3.NotImplementedException;
+import com.github.nscuro.bradamsang.radamsa.Radamsa;
+import com.github.nscuro.bradamsang.radamsa.RadamsaParameters;
+
+import java.io.IOException;
 
 public final class IntruderPayloadProcessor implements IIntruderPayloadProcessor {
+
+    private final Radamsa radamsa;
+
+    private final BurpLogger burpLogger;
+
+    IntruderPayloadProcessor(final Radamsa radamsa, final BurpLogger burpLogger) {
+        this.radamsa = radamsa;
+        this.burpLogger = burpLogger;
+    }
 
     @Override
     public String getProcessorName() {
@@ -12,7 +24,21 @@ public final class IntruderPayloadProcessor implements IIntruderPayloadProcessor
 
     @Override
     public byte[] processPayload(final byte[] currentPayload, final byte[] originalPayload, final byte[] baseValue) {
-        throw new NotImplementedException("Payload Processor is not yet implemented");
+        if (currentPayload == null) {
+            throw new IllegalArgumentException("No current payload provided");
+        }
+
+        final RadamsaParameters radamsaParameters = new RadamsaParameters(currentPayload, null);
+
+        final byte[] fuzzedValue;
+        try {
+            fuzzedValue = radamsa.fuzz(radamsaParameters);
+        } catch (IOException e) {
+            burpLogger.error(e);
+            return currentPayload;
+        }
+
+        return fuzzedValue;
     }
 
 }
