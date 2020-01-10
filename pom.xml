@@ -39,7 +39,7 @@
         <junit-jupiter.version>5.5.2</junit-jupiter.version>
         <junit-platform.version>1.5.2</junit-platform.version>
         <assertj-version>3.14.0</assertj-version>
-        <mockito.version>3.1.0</mockito.version>
+        <mockito.version>3.2.4</mockito.version>
 
         <!-- Plugin versions -->
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
@@ -47,7 +47,6 @@
         <maven-assembly-plugin.version>3.1.0</maven-assembly-plugin.version>
         <jacoco-maven-plugin.version>0.8.5</jacoco-maven-plugin.version>
         <coveralls-maven-plugin.version>4.3.0</coveralls-maven-plugin.version>
-        <checksum-maven-plugin.version>1.8</checksum-maven-plugin.version>
     </properties>
 
     <dependencies>
@@ -184,25 +183,6 @@
                 <groupId>org.eluder.coveralls</groupId>
                 <artifactId>coveralls-maven-plugin</artifactId>
                 <version>${coveralls-maven-plugin.version}</version>
-            </plugin>
-
-            <plugin>
-                <groupId>net.nicoulaj.maven.plugins</groupId>
-                <artifactId>checksum-maven-plugin</artifactId>
-                <version>1.8</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>artifacts</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <algorithms>
-                        <algorithm>SHA-256</algorithm>
-                    </algorithms>
-                </configuration>
             </plugin>
         </plugins>
     </build>

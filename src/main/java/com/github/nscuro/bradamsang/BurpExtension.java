@@ -18,7 +18,7 @@ public final class BurpExtension {
                 new IntruderPayloadGeneratorFactory(extensionSettings, burpLogger);
         extenderCallbacks.registerIntruderPayloadGeneratorFactory(payloadGeneratorFactory);
 
-        final IIntruderPayloadProcessor payloadProcessor = new IntruderPayloadProcessor();
+        final IIntruderPayloadProcessor payloadProcessor = new IntruderPayloadProcessor(null, burpLogger);
         extenderCallbacks.registerIntruderPayloadProcessor(payloadProcessor);
     }
 
