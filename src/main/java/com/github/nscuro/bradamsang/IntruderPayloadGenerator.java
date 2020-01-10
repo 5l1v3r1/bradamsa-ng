@@ -35,11 +35,16 @@ public final class IntruderPayloadGenerator implements IIntruderPayloadGenerator
 
     @Override
     public byte[] getNextPayload(byte[] baseValue) {
-        if (baseValue == null) {
-            throw new IllegalArgumentException("No baseValue provided");
+        if (baseValue == null && attackSettings.getSamplePaths().isEmpty()) {
+            throw new IllegalArgumentException("No base value or sample paths provided");
         }
 
-        final RadamsaParameters radamsaParameters = new RadamsaParameters(baseValue, null);
+        final RadamsaParameters radamsaParameters;
+        if (!attackSettings.getSamplePaths().isEmpty()) {
+            radamsaParameters = new RadamsaParameters(null, attackSettings.getSamplePaths());
+        } else {
+            radamsaParameters = new RadamsaParameters(baseValue, null);
+        }
 
         final byte[] fuzzedValue;
         try {

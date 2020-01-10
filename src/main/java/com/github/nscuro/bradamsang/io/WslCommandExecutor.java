@@ -5,11 +5,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public final class WslCommandExecutor extends CommandExecutor {
+public final class WslCommandExecutor implements CommandExecutor {
+
+    private final NativeCommandExecutor nativeCommandExecutor;
 
     private final String distroName;
 
-    public WslCommandExecutor(final String distroName) {
+    public WslCommandExecutor(final NativeCommandExecutor nativeCommandExecutor,
+                              final String distroName) {
+        this.nativeCommandExecutor = nativeCommandExecutor;
         this.distroName = distroName;
     }
 
@@ -20,7 +24,7 @@ public final class WslCommandExecutor extends CommandExecutor {
         wslCommand.addAll(Arrays.asList("wsl", "-d", distroName, "-e"));
         wslCommand.addAll(command);
 
-        return super.execute(wslCommand, inputData);
+        return nativeCommandExecutor.execute(wslCommand, inputData);
     }
 
 }

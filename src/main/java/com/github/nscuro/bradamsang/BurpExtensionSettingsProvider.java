@@ -44,7 +44,7 @@ public final class BurpExtensionSettingsProvider {
     }
 
     public IntruderAttackSettings buildIntruderAttackSettings() {
-        return new IntruderAttackSettings(getPayloadLimit(), isWslModeEnabled(), getWslDistroName().orElse(null));
+        return new IntruderAttackSettings(getPayloadLimit(), null, isWslModeEnabled(), getWslDistroName().orElse(null));
     }
 
 }
