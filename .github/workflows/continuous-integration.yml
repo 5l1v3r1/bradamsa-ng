@@ -23,4 +23,4 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: bradamsa-ng-${{ github.ref }}
-          path: target/bradamsa-ng-*-jar-with-dependencies.jar
+          path: target/bradamsa-ng-jar-with-dependencies.jar
