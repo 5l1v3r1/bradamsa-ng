@@ -24,23 +24,28 @@
 ## Introduction
 
 *bradamsa-ng* is a [Burp Suite](https://portswigger.net/burp/) extension that brings the power of the amazing 
-[Radamsa](https://gitlab.com/akihe/radamsa) fuzzer to Intruder. It is heavily
-influenced by the original [*bradamsa* by *ikkisoft*](https://github.com/ikkisoft/bradamsa) 
-and aims to fix some of its weaknesses while building upon its strengths.
+[Radamsa](https://gitlab.com/akihe/radamsa) fuzzer to Intruder. It is heavily influenced by the original 
+[*bradamsa* by *ikkisoft*](https://github.com/ikkisoft/bradamsa) and aims to fix some of its weaknesses while building 
+upon its strengths.
 
 One noteworthy feature of *bradamsa-ng* is its support for [WSL](https://docs.microsoft.com/en-us/windows/wsl/about).  
-Radamsa is (understandably) not developed with Windows in mind, which means that 
-there is no official support for it. There was a solution to [build Radamsa using Cygwin](https://github.com/aoh/radamsa/issues/31#issuecomment-266049451),
+Radamsa is (understandably) not developed with Windows in mind, which means that there is no official support for it. 
+There was a solution to [build Radamsa using Cygwin](https://github.com/aoh/radamsa/issues/31#issuecomment-266049451), 
 but it didn't reliably work for me - and there's simply no guarantee that it'll work forever.  
   
-With WSL however, we can compile and run Radamsa in its natural habitat - hell, 
-we can even run it from the Windows host (`echo "test" | wsl -d Ubuntu -e radamsa`).
+With WSL however, we can compile and run Radamsa in its natural habitat - hell, we can even run it from the Windows host:
+
+```shell script
+PS> echo "fuzzing with radamsa is fun!" | wsl -d Ubuntu -e radamsa
+fuzzzing with rrrrrradamsa is funn!
+```
+
 With *bradamsa-ng*, these new possibilities can now be leveraged in Burp.
 
 ## Requirements
 
 * Java >= 8 ([Burp >= 2.0.14 ships with OpenJDK 11](https://twitter.com/Burp_Suite/status/1088829534600921090))
-* Burp Suite obviously
+* Burp Suite >= 2.1
 
 ## Installation
 
@@ -48,7 +53,7 @@ With *bradamsa-ng*, these new possibilities can now be leveraged in Burp.
 * Open Burp and navigate to the *Extender* tab
 * Click *Add*
 * In the dialog that just opened, select the extension type *Java*
-* Click *Find File* and select your `bradamsa-ng-${version}-jar-with-dependencies.jar`
+* Click *Find File* and select your `bradamsa-ng-jar-with-dependencies.jar`
 * Click *Next* - that's it
 
 *bradamsa-ng* tries to automatically detect a *Radamsa* binary in your `$PATH`. If this succeeds, you'll
