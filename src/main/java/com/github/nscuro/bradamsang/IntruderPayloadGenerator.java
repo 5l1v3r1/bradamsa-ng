@@ -3,6 +3,7 @@ package com.github.nscuro.bradamsang;
 import burp.IIntruderPayloadGenerator;
 import com.github.nscuro.bradamsang.radamsa.Radamsa;
 import com.github.nscuro.bradamsang.radamsa.RadamsaParameters;
+import com.github.nscuro.bradamsang.util.BurpLogger;
 
 import java.io.IOException;
 
@@ -26,11 +27,11 @@ public final class IntruderPayloadGenerator implements IIntruderPayloadGenerator
 
     @Override
     public boolean hasMorePayloads() {
-        if (attackSettings.getPayloadLimit() < 0) {
+        if (attackSettings.getPayloadCount() < 0) {
             return true;
         }
 
-        return payloadsGenerated < attackSettings.getPayloadLimit();
+        return payloadsGenerated < attackSettings.getPayloadCount();
     }
 
     @Override

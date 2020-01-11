@@ -7,24 +7,24 @@ import java.util.Optional;
 
 final class IntruderAttackSettings {
 
-    private final int payloadLimit;
+    private final int payloadCount;
 
     private final List<Path> samplePaths;
 
     private final boolean wslModeEnabled;
 
-    private final String wslDistroName;
+    private final String wslDistribution;
 
-    IntruderAttackSettings(final int payloadLimit, final List<Path> samplePaths,
-                           final boolean wslModeEnabled, final String wslDistroName) {
-        this.payloadLimit = payloadLimit;
+    IntruderAttackSettings(final int payloadCount, final List<Path> samplePaths,
+                           final boolean wslModeEnabled, final String wslDistribution) {
+        this.payloadCount = payloadCount;
         this.samplePaths = samplePaths;
         this.wslModeEnabled = wslModeEnabled;
-        this.wslDistroName = wslDistroName;
+        this.wslDistribution = wslDistribution;
     }
 
-    int getPayloadLimit() {
-        return payloadLimit;
+    int getPayloadCount() {
+        return payloadCount;
     }
 
     public List<Path> getSamplePaths() {
@@ -36,16 +36,17 @@ final class IntruderAttackSettings {
         return wslModeEnabled;
     }
 
-    Optional<String> getWslDistroName() {
-        return Optional.ofNullable(wslDistroName);
+    Optional<String> getWslDistribution() {
+        return Optional.ofNullable(wslDistribution);
     }
 
     @Override
     public String toString() {
         return "IntruderAttackSettings{" +
-                "payloadLimit=" + payloadLimit +
+                "payloadCount=" + payloadCount +
+                ", samplePaths=" + samplePaths +
                 ", wslModeEnabled=" + wslModeEnabled +
-                ", wslDistroName='" + wslDistroName + '\'' +
+                ", wslDistroName='" + wslDistribution + '\'' +
                 '}';
     }
 

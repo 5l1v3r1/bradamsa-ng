@@ -1,22 +1,22 @@
 package burp;
 
-import com.github.nscuro.bradamsang.BurpExtension;
+import com.github.nscuro.bradamsang.BradamsaNgExtension;
 
 public final class BurpExtender implements IBurpExtender {
 
-    private final BurpExtension burpExtension;
+    private final BradamsaNgExtension bradamsaNgExtension;
 
-    BurpExtender(final BurpExtension burpExtension) {
-        this.burpExtension = burpExtension;
+    BurpExtender(final BradamsaNgExtension bradamsaNgExtension) {
+        this.bradamsaNgExtension = bradamsaNgExtension;
     }
 
     public BurpExtender() {
-        this(new BurpExtension());
+        this(new BradamsaNgExtension());
     }
 
     @Override
     public void registerExtenderCallbacks(final IBurpExtenderCallbacks extenderCallbacks) {
-        burpExtension.registerExtension(extenderCallbacks);
+        bradamsaNgExtension.registerExtension(extenderCallbacks);
     }
 
 }

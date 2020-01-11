@@ -3,6 +3,7 @@ package com.github.nscuro.bradamsang;
 import burp.IIntruderPayloadProcessor;
 import com.github.nscuro.bradamsang.radamsa.Radamsa;
 import com.github.nscuro.bradamsang.radamsa.RadamsaParameters;
+import com.github.nscuro.bradamsang.util.BurpLogger;
 
 import java.io.IOException;
 
@@ -19,7 +20,7 @@ public final class IntruderPayloadProcessor implements IIntruderPayloadProcessor
 
     @Override
     public String getProcessorName() {
-        return BurpExtension.EXTENSION_NAME;
+        return BradamsaNgExtension.EXTENSION_NAME;
     }
 
     @Override
