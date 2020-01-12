@@ -1,6 +1,5 @@
 package com.github.nscuro.bradamsang;
 
-import java.nio.file.Path;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -9,13 +8,13 @@ final class IntruderAttackSettings {
 
     private final int payloadCount;
 
-    private final List<Path> samplePaths;
+    private final List<String> samplePaths;
 
     private final boolean wslModeEnabled;
 
     private final String wslDistribution;
 
-    IntruderAttackSettings(final int payloadCount, final List<Path> samplePaths,
+    IntruderAttackSettings(final int payloadCount, final List<String> samplePaths,
                            final boolean wslModeEnabled, final String wslDistribution) {
         this.payloadCount = payloadCount;
         this.samplePaths = samplePaths;
@@ -27,7 +26,7 @@ final class IntruderAttackSettings {
         return payloadCount;
     }
 
-    public List<Path> getSamplePaths() {
+    public List<String> getSamplePaths() {
         return Optional.ofNullable(samplePaths)
                 .orElseGet(Collections::emptyList);
     }

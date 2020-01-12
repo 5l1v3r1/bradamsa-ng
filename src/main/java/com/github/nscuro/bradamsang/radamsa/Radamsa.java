@@ -2,14 +2,11 @@ package com.github.nscuro.bradamsang.radamsa;
 
 import com.github.nscuro.bradamsang.io.CommandExecutor;
 import com.github.nscuro.bradamsang.io.ExecutionResult;
-
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
+
 
 import static java.lang.String.format;
 
@@ -38,16 +35,8 @@ public final class Radamsa {
         if (parameters.getSample().isPresent()) {
             executionResult = commandExecutor.execute(radamsaCommand, parameters.getSample().get());
         } else {
-            final boolean hasSampleDirectories = parameters.getSamplePaths().stream()
-                    .map(Path::toFile).anyMatch(File::isDirectory);
-            if (hasSampleDirectories) {
-                radamsaCommand.add("--recursive");
-            }
-
-            radamsaCommand.addAll(parameters.getSamplePaths().stream()
-                    .map(Path::toAbsolutePath)
-                    .map(Path::toString)
-                    .collect(Collectors.toList()));
+            radamsaCommand.add("--recursive");
+            radamsaCommand.addAll(parameters.getSamplePaths());
 
             executionResult = commandExecutor.execute(radamsaCommand);
         }

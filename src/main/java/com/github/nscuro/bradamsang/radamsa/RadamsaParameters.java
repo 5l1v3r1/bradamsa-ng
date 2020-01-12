@@ -9,9 +9,9 @@ public final class RadamsaParameters {
 
     private final byte[] sample;
 
-    private final List<Path> samplePaths;
+    private final List<String> samplePaths;
 
-    public RadamsaParameters(final byte[] sample, final List<Path> samplePaths) {
+    public RadamsaParameters(final byte[] sample, final List<String> samplePaths) {
         this.sample = sample;
         this.samplePaths = samplePaths;
     }
@@ -20,7 +20,7 @@ public final class RadamsaParameters {
         return Optional.ofNullable(sample);
     }
 
-    public List<Path> getSamplePaths() {
+    public List<String> getSamplePaths() {
         return Optional.ofNullable(samplePaths)
                 .orElseGet(Collections::emptyList);
     }

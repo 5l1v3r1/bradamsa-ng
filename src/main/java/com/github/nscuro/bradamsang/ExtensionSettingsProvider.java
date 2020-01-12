@@ -1,5 +1,6 @@
 package com.github.nscuro.bradamsang;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface ExtensionSettingsProvider {
@@ -8,12 +9,14 @@ public interface ExtensionSettingsProvider {
 
     int getPayloadCount();
 
+    List<String> getSamplePaths();
+
     boolean isWslModeEnabled();
 
     Optional<String> getWslDistributionName();
 
     default IntruderAttackSettings buildIntruderAttackSettings() {
-        return new IntruderAttackSettings(getPayloadCount(), null, isWslModeEnabled(),
+        return new IntruderAttackSettings(getPayloadCount(), getSamplePaths(), isWslModeEnabled(),
                 getWslDistributionName().orElse(null));
     }
 

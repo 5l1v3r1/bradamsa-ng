@@ -10,17 +10,16 @@
 
 ## Index
 
-- [bradamsa-ng](#bradamsa-ng)
-  - [Index](#index)
-  - [Introduction](#introduction)
-  - [Requirements](#requirements)
-  - [Installation](#installation)
-  - [Building](#building)
-  - [Usage](#usage)
-    - [Intruder Payload Generator](#intruder-payload-generator)
-    - [Intruder Payload Processor](#intruder-payload-processor)
-    - [WSL mode](#wsl-mode)
-
+- [Introduction](#introduction)
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Building](#building)
+- [Usage](#usage)
+  - [Intruder Payload Generator](#intruder-payload-generator)
+  - [Intruder Payload Processor](#intruder-payload-processor)
+  - [WSL mode](#wsl-mode)
+- [FAQ](#faq)
+  
 ## Introduction
 
 *bradamsa-ng* is a [Burp Suite](https://portswigger.net/burp/) extension that brings the power of the amazing 
@@ -116,3 +115,18 @@ In order to take advantage of it, you need the following:
 * *bradamsa-ng* will attempt to automatically find a Radamsa binary in the selected distro's `$PATH`
   * If this fails you can manually enter the **absolute** path to the binary **inside the WSL distro**
   * At this point, *bradamsa-ng* will simply check if the entered value points to an existing file **or** is a command that can be found in the distro's `$PATH`
+
+## FAQ
+
+### Why can't I choose a custom seed?
+
+Quoting [Radamsa's README](https://gitlab.com/akihe/radamsa#fuzzing-with-radamsa):
+
+> By default radamsa will grab a random seed from /dev/urandom if it is not given a specific random state to start from, 
+> and you will generally see a different result every time it is started, though for small inputs you might see the same 
+> or the original fairly often. The random state to use can be given with the -s parameter, which is followed by a number. 
+> **Using the same random state will result in the same data being generated**.
+
+*bradamsa-ng*'s payload generator works by invoking Radamsa every time a new payload is requested from Intruder. 
+Providing a custom seed would mean that the same payload will be generated over and over again, which would totally 
+defeat the purpose of a fuzzer.

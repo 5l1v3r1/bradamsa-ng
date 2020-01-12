@@ -2,12 +2,16 @@ package com.github.nscuro.bradamsang.util;
 
 import com.github.nscuro.bradamsang.io.ExecutionResult;
 import com.github.nscuro.bradamsang.io.NativeCommandExecutor;
-
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+
+
+import static java.lang.String.format;
 
 public final class WslUtils {
 
@@ -32,7 +36,8 @@ public final class WslUtils {
      * Build 17763 -> Version 1809
      * ...
      *
-     * @see <a href="https://pureinfotech.com/how-determine-version-windows-10-running-pc/">How to determine installed version of Windows 10</a>
+     * @see <a href="https://pureinfotech.com/how-determine-version-windows-10-running-pc/">How to determine
+     *         installed version of Windows 10</a>
      */
     int getWindows10BuildNumber() throws IOException {
         final ExecutionResult executionResult = nativeCommandExecutor.execute(Arrays.asList("WMIC.exe", "os", "get", "version", "/format:LIST"));
@@ -57,7 +62,8 @@ public final class WslUtils {
      *
      * @return true, when wslconfig.exe instead of wsl.exe should be used. Otherwise false.
      * @see <a href="https://docs.microsoft.com/en-us/windows/wsl/wsl-config">Manage Linux Distributions</a>
-     * @see <a href="https://support.microsoft.com/en-us/help/13853/windows-lifecycle-fact-sheet">Windows lifecycle fact sheet</a>
+     * @see <a href="https://support.microsoft.com/en-us/help/13853/windows-lifecycle-fact-sheet">Windows lifecycle
+     *         fact sheet</a>
      */
     boolean shouldUseWslConfig() throws IOException {
         return getWindows10BuildNumber() < 18362;
@@ -90,6 +96,17 @@ public final class WslUtils {
                         .filter(line -> !line.isEmpty())
                         .collect(Collectors.toList()))
                 .orElseGet(Collections::emptyList);
+    }
+
+    public String convertToWslPath(final String windowsPath) {
+        final Matcher driveLetterMatcher = Pattern.compile("^([a-zA-Z]):\\\\").matcher(windowsPath);
+
+        if (!driveLetterMatcher.find() || driveLetterMatcher.groupCount() != 1) {
+            throw new IllegalArgumentException(format("%s is not a valid absolute Windows path", windowsPath));
+        }
+
+        return "/mnt/" + driveLetterMatcher.group(1).toLowerCase() +
+                "/" + driveLetterMatcher.replaceFirst("").replaceAll("\\\\", "/");
     }
 
 }
