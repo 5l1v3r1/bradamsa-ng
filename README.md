@@ -127,6 +127,6 @@ Quoting [Radamsa's README](https://gitlab.com/akihe/radamsa#fuzzing-with-radamsa
 > or the original fairly often. The random state to use can be given with the -s parameter, which is followed by a number. 
 > **Using the same random state will result in the same data being generated**.
 
-*bradamsa-ng*'s payload generator works by invoking Radamsa every time a new payload is requested from Intruder. 
+*bradamsa-ng*'s payload generator works by invoking Radamsa every time a new payload is requested by Intruder. 
 Providing a custom seed would mean that the same payload will be generated over and over again, which would totally 
 defeat the purpose of a fuzzer.
