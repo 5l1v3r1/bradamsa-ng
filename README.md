@@ -118,6 +118,16 @@ In order to take advantage of it, you need the following:
   * If this fails you can manually enter the **absolute** path to the binary **inside the WSL distro**
   * At this point, *bradamsa-ng* will simply check if the entered value points to an existing file **or** is a command that can be found in the distro's `$PATH`
 
+#### Utilized commands
+
+If - for whatever reason - your AV kicks in when using *bradamsa-ng* in WSL mode, here's a list of commands that get 
+executed in order to make WSL mode possible:
+
+* `where.exe`: Check if WSL is installed (`where.exe /q wsl.exe`)
+* `WMIC.exe`: Determine Windows 10 Build Number (`WMIC.exe os get version /format:LIST`)
+* `wslconfig.exe`: List available WSL distros (`wslconfig.exe /list`)
+* `wsl.exe`: List available WSL distros; Execute commands in WSL (`wsl.exe --list`, `wsl.exe -d <DISTRO> -e <COMMAND>`)
+
 ## FAQ
 
 ### Why can't I choose a custom seed?

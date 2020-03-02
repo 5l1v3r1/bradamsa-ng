@@ -27,7 +27,7 @@ public final class WslUtils {
 
     public boolean isWslAvailable() throws IOException {
         return isWindows10()
-                && nativeCommandExecutor.execute(Arrays.asList("where", "/q", "wsl.exe")).getExitCode() == 0;
+                && nativeCommandExecutor.execute(Arrays.asList("where.exe", "/q", "wsl.exe")).getExitCode() == 0;
     }
 
     /**
