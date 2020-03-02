@@ -130,3 +130,11 @@ Quoting [Radamsa's README](https://gitlab.com/akihe/radamsa#fuzzing-with-radamsa
 *bradamsa-ng*'s payload generator works by invoking Radamsa every time a new payload is requested by Intruder. 
 Providing a custom seed would mean that the same payload will be generated over and over again, which would totally 
 defeat the purpose of a fuzzer.
+
+### I get an error saying "No base value or sample paths provided" for Battering Ram attacks. What am I doing wrong?
+
+In Intruder, you specify the positions in a request to insert your payloads in. Typically, you'll just wrap the current
+parameter's value inside two `§` symbols. When you run the attack, Burp will pass the current value to Payload Generators
+and Payload Processors for modification. In this case, *bradamsa-ng* simply pipes the current value into Radamsa and returns
+the result. The Battering Ram attack is different in that Burp won't pass any current values to payload generators or processors.
+When using this attack mode, you'll have to specify at least one sample file, otherwise there simply isn't anything to fuzz.
