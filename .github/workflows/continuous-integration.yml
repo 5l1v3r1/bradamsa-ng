@@ -29,3 +29,4 @@ jobs:
         with:
           github-token: ${{ secrets.CODECOV_TOKEN }}
           file: target/site/jacoco/jacoco.xml
+          fail_ci_if_error: true
