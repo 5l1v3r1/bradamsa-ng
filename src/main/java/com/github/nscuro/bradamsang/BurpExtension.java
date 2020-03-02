@@ -6,7 +6,7 @@ import burp.IIntruderPayloadProcessor;
 import com.github.nscuro.bradamsang.io.NativeCommandExecutor;
 import com.github.nscuro.bradamsang.util.BurpLogger;
 
-public final class BradamsaNgExtension {
+public final class BurpExtension {
 
     static final String EXTENSION_NAME = "bradamsa-ng";
 

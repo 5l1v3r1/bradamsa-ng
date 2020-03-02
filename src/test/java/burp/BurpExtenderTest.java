@@ -1,6 +1,6 @@
 package burp;
 
-import com.github.nscuro.bradamsang.BradamsaNgExtension;
+import com.github.nscuro.bradamsang.BurpExtension;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -16,20 +16,20 @@ class BurpExtenderTest {
     private IBurpExtenderCallbacks extenderCallbacksMock;
 
     @Mock
-    private BradamsaNgExtension bradamsaNgExtensionMock;
+    private BurpExtension burpExtensionMock;
 
     private BurpExtender burpExtender;
 
     @BeforeEach
     void beforeEach() {
-        burpExtender = new BurpExtender(bradamsaNgExtensionMock);
+        burpExtender = new BurpExtender(burpExtensionMock);
     }
 
     @Test
     void shouldRegisterExtension() {
         burpExtender.registerExtenderCallbacks(extenderCallbacksMock);
 
-        verify(bradamsaNgExtensionMock).registerExtension(extenderCallbacksMock);
+        verify(burpExtensionMock).registerExtension(extenderCallbacksMock);
     }
 
 }

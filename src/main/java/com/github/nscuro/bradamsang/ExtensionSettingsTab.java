@@ -84,7 +84,7 @@ public final class ExtensionSettingsTab implements ITab, ExtensionSettingsProvid
 
     @Override
     public String getTabCaption() {
-        return BradamsaNgExtension.EXTENSION_NAME;
+        return BurpExtension.EXTENSION_NAME;
     }
 
     @Override

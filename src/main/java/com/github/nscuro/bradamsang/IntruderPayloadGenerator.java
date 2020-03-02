@@ -10,9 +10,7 @@ import java.io.IOException;
 public final class IntruderPayloadGenerator implements IIntruderPayloadGenerator {
 
     private final BurpLogger burpLogger;
-
     private final IntruderAttackSettings attackSettings;
-
     private final Radamsa radamsa;
 
     private int payloadsGenerated;
@@ -53,6 +51,10 @@ public final class IntruderPayloadGenerator implements IIntruderPayloadGenerator
         } catch (IOException e) {
             burpLogger.error(e);
             return null;
+        }
+
+        if (fuzzedValue == null) {
+            burpLogger.warn("Radamsa invocation did not produce any output");
         }
 
         payloadsGenerated++;

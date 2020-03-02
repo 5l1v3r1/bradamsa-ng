@@ -10,7 +10,6 @@ import java.io.IOException;
 public final class IntruderPayloadProcessor implements IIntruderPayloadProcessor {
 
     private final Radamsa radamsa;
-
     private final BurpLogger burpLogger;
 
     IntruderPayloadProcessor(final Radamsa radamsa, final BurpLogger burpLogger) {
@@ -20,7 +19,7 @@ public final class IntruderPayloadProcessor implements IIntruderPayloadProcessor
 
     @Override
     public String getProcessorName() {
-        return BradamsaNgExtension.EXTENSION_NAME;
+        return BurpExtension.EXTENSION_NAME;
     }
 
     @Override

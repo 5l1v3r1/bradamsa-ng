@@ -7,7 +7,6 @@ import java.util.Optional;
 public final class RadamsaParameters {
 
     private final byte[] sample;
-
     private final List<String> samplePaths;
 
     public RadamsaParameters(final byte[] sample, final List<String> samplePaths) {

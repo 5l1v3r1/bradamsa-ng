@@ -12,7 +12,6 @@ import com.github.nscuro.bradamsang.util.BurpLogger;
 public final class IntruderPayloadGeneratorFactory implements IIntruderPayloadGeneratorFactory {
 
     private final ExtensionSettingsProvider extensionSettingsProvider;
-
     private final BurpLogger burpLogger;
 
     IntruderPayloadGeneratorFactory(final ExtensionSettingsProvider extensionSettingsProvider, final BurpLogger burpLogger) {
@@ -22,23 +21,18 @@ public final class IntruderPayloadGeneratorFactory implements IIntruderPayloadGe
 
     @Override
     public String getGeneratorName() {
-        return BradamsaNgExtension.EXTENSION_NAME;
+        return BurpExtension.EXTENSION_NAME;
     }
 
     @Override
     public IIntruderPayloadGenerator createNewInstance(final IIntruderAttack attack) {
         if (!extensionSettingsProvider.getRadamsaExecutablePath().isPresent()) {
-            throw new ExtensionConfigurationException("");
+            throw new ExtensionConfigurationException("No Radamsa executable path provided");
         }
 
         final IntruderAttackSettings attackSettings = extensionSettingsProvider.buildIntruderAttackSettings();
 
-        if (attackSettings.isWslModeEnabled() && !attackSettings.getWslDistribution().isPresent()) {
-            throw new ExtensionConfigurationException("");
-        }
-
         final CommandExecutor commandExecutor;
-
         if (attackSettings.isWslModeEnabled()) {
             commandExecutor = attackSettings.getWslDistribution()
                     .map(distroName -> new WslCommandExecutor(new NativeCommandExecutor(), distroName))

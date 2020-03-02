@@ -15,7 +15,6 @@ import static java.lang.String.format;
 public final class Radamsa {
 
     private final CommandExecutor commandExecutor;
-
     private final String radamsaPath;
 
     public Radamsa(final CommandExecutor commandExecutor, final String radamsaPath) {

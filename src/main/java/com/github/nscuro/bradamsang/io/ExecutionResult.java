@@ -5,9 +5,7 @@ import java.util.Optional;
 public final class ExecutionResult {
 
     private final int exitCode;
-
     private final String stdoutOutput;
-
     private final String stderrOutput;
 
     ExecutionResult(final int exitCode, final String stdoutOutput, final String stderrOutput) {

@@ -7,11 +7,8 @@ import java.util.Optional;
 final class IntruderAttackSettings {
 
     private final int payloadCount;
-
     private final List<String> samplePaths;
-
     private final boolean wslModeEnabled;
-
     private final String wslDistribution;
 
     IntruderAttackSettings(final int payloadCount, final List<String> samplePaths,
