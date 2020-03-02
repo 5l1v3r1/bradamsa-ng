@@ -17,10 +17,15 @@ jobs:
           java-version: ${{ matrix.java }}
           architecture: x64
       - name: Build with Maven
-        run: mvn -B clean package
+        run: mvn -B clean package jacoco:report
       - name: Upload JAR
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         uses: actions/upload-artifact@v1
         with:
           name: bradamsa-ng
           path: target/bradamsa-ng-jar-with-dependencies.jar
+      - name: Report Test Coverage
+        uses: codecov/codecov-action@v1
+        with:
+          github-token: ${{ secrets.CODECOV_TOKEN }}
+          file: target/site/jacoco/jacoco.xml

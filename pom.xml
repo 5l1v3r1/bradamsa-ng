@@ -36,17 +36,16 @@
         <commons-lang3.version>3.9</commons-lang3.version>
         <commons-io.version>2.6</commons-io.version>
         <intellij-forms-rt.version>7.0.3</intellij-forms-rt.version>
-        <junit-jupiter.version>5.5.2</junit-jupiter.version>
-        <junit-platform.version>1.5.2</junit-platform.version>
-        <assertj-version>3.14.0</assertj-version>
-        <mockito.version>3.2.4</mockito.version>
+        <junit-jupiter.version>5.6.0</junit-jupiter.version>
+        <junit-platform.version>1.6.0</junit-platform.version>
+        <assertj-version>3.15.0</assertj-version>
+        <mockito.version>3.3.0</mockito.version>
 
         <!-- Plugin versions -->
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
         <maven-assembly-plugin.version>3.1.0</maven-assembly-plugin.version>
         <jacoco-maven-plugin.version>0.8.5</jacoco-maven-plugin.version>
-        <coveralls-maven-plugin.version>4.3.0</coveralls-maven-plugin.version>
     </properties>
 
     <dependencies>
@@ -178,12 +177,6 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>org.eluder.coveralls</groupId>
-                <artifactId>coveralls-maven-plugin</artifactId>
-                <version>${coveralls-maven-plugin.version}</version>
             </plugin>
         </plugins>
     </build>
