@@ -1,6 +1,5 @@
 package com.github.nscuro.bradamsang.radamsa;
 
-import java.nio.file.Path;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;

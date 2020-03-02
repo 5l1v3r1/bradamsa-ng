@@ -2,11 +2,13 @@ package com.github.nscuro.bradamsang.radamsa;
 
 import com.github.nscuro.bradamsang.io.CommandExecutor;
 import com.github.nscuro.bradamsang.io.ExecutionResult;
+import org.apache.commons.lang3.StringUtils;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
+import java.util.Objects;
 
 import static java.lang.String.format;
 
@@ -17,8 +19,8 @@ public final class Radamsa {
     private final String radamsaPath;
 
     public Radamsa(final CommandExecutor commandExecutor, final String radamsaPath) {
-        this.commandExecutor = commandExecutor;
-        this.radamsaPath = radamsaPath;
+        this.commandExecutor = Objects.requireNonNull(commandExecutor);
+        this.radamsaPath = Objects.requireNonNull(StringUtils.trimToNull(radamsaPath));
     }
 
     public byte[] fuzz(final RadamsaParameters parameters) throws IOException {
@@ -60,7 +62,7 @@ public final class Radamsa {
 
         return executionResult.getStdoutOutput()
                 .map(String::trim)
-                .map(output -> output.split(" ", 1))
+                .map(output -> output.split(" ", 2))
                 .filter(outputParts -> outputParts.length == 2)
                 .map(outputParts -> outputParts[1])
                 .orElseThrow(() -> new RadamsaException(format("Missing or unexpected output for command %s", command)));
