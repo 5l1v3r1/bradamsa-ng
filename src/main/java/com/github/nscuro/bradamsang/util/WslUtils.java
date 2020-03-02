@@ -74,8 +74,7 @@ public final class WslUtils {
         if (shouldUseWslConfig()) {
             executionResult = nativeCommandExecutor.execute(Arrays.asList("wslconfig.exe", "/list"));
         } else {
-            // executionResult = nativeCommandExecutor.execute(Arrays.asList("wsl.exe", "--list"));
-            executionResult = nativeCommandExecutor.execute(Arrays.asList("wslconfig.exe", "/list"));
+            executionResult = nativeCommandExecutor.execute(Arrays.asList("wsl.exe", "--list"));
         }
 
         if (executionResult.getExitCode() != 0) {
