@@ -37,6 +37,8 @@ but it didn't reliably work for me - and there's simply no guarantee that it'll 
 With WSL however, we can compile and run Radamsa in its natural habitat - hell, we can even run it from the Windows host:
 
 ```shell script
+PS> wsl -d Ubuntu -e which radamsa
+/usr/bin/radamsa
 PS> echo "fuzzing with radamsa is fun!" | wsl -d Ubuntu -e radamsa
 fuzzzing with rrrrrradamsa is funn!
 ```
