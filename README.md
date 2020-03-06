@@ -62,19 +62,23 @@ With *bradamsa-ng*, these new possibilities can now be leveraged in Burp.
 *bradamsa-ng* tries to automatically detect a *Radamsa* binary in your `$PATH`. If this succeeds, you'll
 see a message saying 
 
-> Radamsa binary was found at /some/path/radamsa 
+> Radamsa executable found at /usr/bin/radamsa
 
 in the extension's *Output* tab.
 
 Likewise, when running on Windows and WSL is available, you'll either see
 
->WSL is available, but no installed distributions have been found
+> WSL is available, but no distributions are installed
 
 or 
 
-> WSL is available and the following distributions have been found: [Ubuntu, Kali]
+> WSL is available and the following distributions have been found: [Ubuntu]  
+> WSL mode enabled with distribution Ubuntu  
+> searching for Radamsa executable  
+> Radamsa executable found at /usr/bin/radamsa
 
-depending on if WSL distributions are installed or not.
+depending on if WSL distributions are installed or not. As you can see, *bradamsa-ng* will automatically enable
+WSL mode for you, using your default WSL distribution.
 
 ## Building
 
@@ -87,18 +91,29 @@ The installable extension JAR can now be found at `target/bradamsa-ng-${version}
 
 ### Intruder Payload Generator
 
-* In Intruder's *Payloads* tab, select the payload type *Extension-generated*:
-  ![Payload Type](.github/payload-generator_payload-type.png)
-* Next, choose *bradamsa-ng* as generator under *Payload Options*:
-  ![Payload Generator](.github/payload-generator_generator-extension.png)
-* Set the amount of payloads you want to generate in the *bradamsa-ng* tab under *Payload Count*
-  * **All** payloads will be generated before the first request is sent
-* Start the Intruder attack
-  * Please note that the *Battering Ram* attack is not supported
+* In Intruder's *Payloads* tab under *Payload Sets*, select the payload type *Extension-generated*
+* Next, choose *bradamsa-ng* as generator under *Payload Options [Extension Generated]*
+
+![Payload Generator Selection](.github/screenshots/intruder-payload-generator-selection.jpg)
+
+* In the *bradamsa-ng* tab:
+  * Adjust the amount of payloads you want to generate
+    * Providing a number <= 0 will be interpreted as "infinite"
+  * Optionally provide sample files
+
+Per default, the value of payload positions (those enclosed in `§`) will be fuzzed. If you provide samples, those values 
+will be ignored and Radamsa will generate values based on the sample files instead.
+
+For the *Battering Ram* attack type you **must** provide sample files.
+See the [relevant FAQ section](#i-get-an-error-saying-no-base-value-or-sample-paths-provided-for-battering-ram-attacks-what-am-i-doing-wrong).
 
 ### Intruder Payload Processor
 
-Not implemented yet.
+* In Intruder's *Payloads* tab under *Payload processing*, click *Add*
+* For *Rule type*, choose *Invoke Burp extension*
+* Select *bradamsa-ng* as payload processor
+
+![Payload Processor Selection](.github/screenshots/intruder-payload-processor-selection.jpg)
 
 ### WSL mode
 
