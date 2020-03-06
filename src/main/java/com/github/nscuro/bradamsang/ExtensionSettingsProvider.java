@@ -16,8 +16,8 @@ public interface ExtensionSettingsProvider {
     Optional<String> getWslDistributionName();
 
     default IntruderAttackSettings buildIntruderAttackSettings() {
-        return new IntruderAttackSettings(getPayloadCount(), getSamplePaths(), isWslModeEnabled(),
-                getWslDistributionName().orElse(null));
+        return new IntruderAttackSettings(getPayloadCount(), getSamplePaths(),
+                isWslModeEnabled(), getWslDistributionName().orElse(null));
     }
 
 }
