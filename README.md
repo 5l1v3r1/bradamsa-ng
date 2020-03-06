@@ -8,8 +8,6 @@
 
 *A Burp Suite extension for Radamsa-powered fuzzing with Intruder*
 
-![Screenshot](.github/screenshot.png)
-
 ## Index
 
 - [Introduction](#introduction)
