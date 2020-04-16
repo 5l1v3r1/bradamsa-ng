@@ -2,6 +2,7 @@ package com.github.nscuro.bradamsang.util;
 
 import com.github.nscuro.bradamsang.io.ExecutionResult;
 import com.github.nscuro.bradamsang.io.NativeCommandExecutor;
+
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collections;
@@ -9,7 +10,6 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-
 
 import static java.lang.String.format;
 
@@ -37,10 +37,10 @@ public final class WslUtils {
      * ...
      *
      * @see <a href="https://pureinfotech.com/how-determine-version-windows-10-running-pc/">How to determine
-     *         installed version of Windows 10</a>
+     * installed version of Windows 10</a>
      */
     int getWindows10BuildNumber() throws IOException {
-        final ExecutionResult executionResult = nativeCommandExecutor.execute(Arrays.asList("WMIC.exe", "os", "get", "version", "/format:LIST"));
+        final ExecutionResult executionResult = nativeCommandExecutor.execute(List.of("WMIC.exe", "os", "get", "version", "/format:LIST"));
 
         if (executionResult.getExitCode() != 0) {
             throw new IOException();
@@ -63,7 +63,7 @@ public final class WslUtils {
      * @return true, when wslconfig.exe instead of wsl.exe should be used. Otherwise false.
      * @see <a href="https://docs.microsoft.com/en-us/windows/wsl/wsl-config">Manage Linux Distributions</a>
      * @see <a href="https://support.microsoft.com/en-us/help/13853/windows-lifecycle-fact-sheet">Windows lifecycle
-     *         fact sheet</a>
+     * fact sheet</a>
      */
     boolean shouldUseWslConfig() throws IOException {
         return getWindows10BuildNumber() < 18362;
@@ -72,9 +72,9 @@ public final class WslUtils {
     public List<String> getInstalledDistributions() throws IOException {
         final ExecutionResult executionResult;
         if (shouldUseWslConfig()) {
-            executionResult = nativeCommandExecutor.execute(Arrays.asList("wslconfig.exe", "/list"));
+            executionResult = nativeCommandExecutor.execute(List.of("wslconfig.exe", "/list"));
         } else {
-            executionResult = nativeCommandExecutor.execute(Arrays.asList("wsl.exe", "--list"));
+            executionResult = nativeCommandExecutor.execute(List.of("wsl.exe", "--list"));
         }
 
         if (executionResult.getExitCode() != 0) {

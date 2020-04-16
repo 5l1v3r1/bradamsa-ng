@@ -6,7 +6,6 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -25,11 +24,11 @@ public final class Radamsa {
     public byte[] fuzz(final RadamsaParameters parameters) throws IOException {
         if (parameters == null) {
             throw new IllegalArgumentException("No parameters provided");
-        } else if (!parameters.getSample().isPresent() && parameters.getSamplePaths().isEmpty()) {
+        } else if (parameters.getSample().isEmpty() && parameters.getSamplePaths().isEmpty()) {
             throw new IllegalArgumentException("No sample data provided");
         }
 
-        final List<String> radamsaCommand = new ArrayList<>();
+        final var radamsaCommand = new ArrayList<String>();
         radamsaCommand.add(radamsaPath);
 
         final ExecutionResult executionResult;
@@ -52,7 +51,7 @@ public final class Radamsa {
     }
 
     public String getVersion() throws IOException {
-        final List<String> command = Arrays.asList(radamsaPath, "-V");
+        final List<String> command = List.of(radamsaPath, "-V");
         final ExecutionResult executionResult = commandExecutor.execute(command);
 
         if (executionResult.getExitCode() != 0) {

@@ -26,7 +26,7 @@ public final class IntruderPayloadGeneratorFactory implements IIntruderPayloadGe
 
     @Override
     public IIntruderPayloadGenerator createNewInstance(final IIntruderAttack attack) {
-        if (!extensionSettingsProvider.getRadamsaExecutablePath().isPresent()) {
+        if (extensionSettingsProvider.getRadamsaExecutablePath().isEmpty()) {
             throw new ExtensionConfigurationException("No Radamsa executable path provided");
         }
 
@@ -41,7 +41,7 @@ public final class IntruderPayloadGeneratorFactory implements IIntruderPayloadGe
             commandExecutor = new NativeCommandExecutor();
         }
 
-        final Radamsa radamsa = new Radamsa(commandExecutor, extensionSettingsProvider.getRadamsaExecutablePath()
+        final var radamsa = new Radamsa(commandExecutor, extensionSettingsProvider.getRadamsaExecutablePath()
                 .orElseThrow(() -> new ExtensionConfigurationException("No path to Radamsa executable provided")));
 
         burpLogger.info("Launching Intruder attack with " + attackSettings);

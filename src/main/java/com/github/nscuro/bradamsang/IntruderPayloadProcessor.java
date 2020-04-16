@@ -28,7 +28,7 @@ public final class IntruderPayloadProcessor implements IIntruderPayloadProcessor
             throw new IllegalArgumentException("No current payload provided");
         }
 
-        final RadamsaParameters radamsaParameters = new RadamsaParameters(currentPayload, null);
+        final var radamsaParameters = new RadamsaParameters(currentPayload, null);
 
         final byte[] fuzzedValue;
         try {

@@ -21,7 +21,7 @@ public final class WslCommandExecutor implements CommandExecutor {
 
     @Override
     public ExecutionResult execute(final List<String> command, final byte[] inputData) throws IOException {
-        final List<String> wslCommand = new ArrayList<>();
+        final var wslCommand = new ArrayList<String>();
 
         wslCommand.addAll(Arrays.asList("wsl", "-d", distroName, "-e"));
         wslCommand.addAll(command);
