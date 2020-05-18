@@ -1,5 +1,7 @@
 package com.github.nscuro.bradamsang;
 
+import com.github.nscuro.bradamsang.intruder.IntruderAttackSettings;
+
 import java.util.List;
 import java.util.Optional;
 

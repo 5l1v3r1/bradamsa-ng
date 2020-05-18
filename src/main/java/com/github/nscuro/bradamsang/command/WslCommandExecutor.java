@@ -1,4 +1,4 @@
-package com.github.nscuro.bradamsang.io;
+package com.github.nscuro.bradamsang.command;
 
 import org.apache.commons.lang3.StringUtils;
 

@@ -1,7 +1,7 @@
 package com.github.nscuro.bradamsang.radamsa;
 
-import com.github.nscuro.bradamsang.io.CommandExecutor;
-import com.github.nscuro.bradamsang.io.ExecutionResult;
+import com.github.nscuro.bradamsang.command.CommandExecutor;
+import com.github.nscuro.bradamsang.command.ExecutionResult;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;

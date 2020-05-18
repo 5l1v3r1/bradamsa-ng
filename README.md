@@ -21,7 +21,7 @@
 ## Introduction
 
 *bradamsa-ng* is a [Burp Suite](https://portswigger.net/burp/) extension that brings the power of the amazing 
-[Radamsa](https://gitlab.com/akihe/radamsa) fuzzer to Intruder. It is heavily influenced by the original 
+[Radamsa](https://gitlab.com/akihe/radamsa) fuzzer to Intruder. It is influenced by the original 
 [*bradamsa* by *ikkisoft*](https://github.com/ikkisoft/bradamsa) and aims to fix some of its weaknesses while building 
 upon its strengths.
 
@@ -43,7 +43,10 @@ With *bradamsa-ng*, these new possibilities can now be leveraged in Burp.
 
 ## Requirements
 
-* Java >= 11 ([Burp >= 2.0.14 ships with OpenJDK 11](https://twitter.com/Burp_Suite/status/1088829534600921090))
+* Java >= 11
+  * [Burp >= 2.0.14 ships with OpenJDK 11](https://twitter.com/Burp_Suite/status/1088829534600921090)
+  * [Burp >= 2020.4 requires Java >= 8](https://portswigger.net/burp/releases/professional-community-2020-4)
+  * [Java versions > 8 and < 11 are out of support](https://adoptopenjdk.net/support.html#roadmap)
 * Burp Suite >= 2.1
 
 ## Installation
@@ -134,15 +137,15 @@ In order to take advantage of it, you need the following:
 
 #### Utilized commands
 
-If, for whatever reason, your AV kicks in when using *bradamsa-ng* in WSL mode, here's a list of commands that get 
-executed in order to make WSL mode possible:
+If, for whatever reason, your AV kicks in when using *bradamsa-ng* in WSL mode, here's a list of commands that *bradamsa-ng* 
+will execute in order to make WSL mode possible:
 
-| Command         | Description                                         | Example                                              |
-| --------------- | --------------------------------------------------- | ---------------------------------------------------- |
-| `where.exe`     | Check if WSL installed                              | `where.exe /q wsl.exe`                               |
-| `WMIC.exe`      | Determine Windows 10 build number                   | `WMIC.exe os get version /format:LIST`               |
-| `wslconfig.exe` | List available WSL distros                          | `wslconfig.exe /list`                                |
-| `wsl.exe`       | List available WSL distros; Execute commands in WSL | `wsl.exe --list`, `wsl.exe -d <DISTRO> -e <COMMAND>` |
+| Command         | Used for                                                    | Example                                              |
+| --------------- | ----------------------------------------------------------- | ---------------------------------------------------- |
+| `where.exe`     | Checking if WSL installed                                   | `where.exe /q wsl.exe`                               |
+| `WMIC.exe`      | Determination of Windows 10 build number                    | `WMIC.exe os get version /format:LIST`               |
+| `wslconfig.exe` | Listing of available WSL distros                            | `wslconfig.exe /list`                                |
+| `wsl.exe`       | Listing available WSL distros; Execution of commands in WSL | `wsl.exe --list`, `wsl.exe -d <DISTRO> -e <COMMAND>` |
 
 ## FAQ
 

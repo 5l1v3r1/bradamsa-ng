@@ -1,4 +1,4 @@
-package com.github.nscuro.bradamsang;
+package com.github.nscuro.bradamsang.intruder;
 
 import burp.IIntruderPayloadGenerator;
 import com.github.nscuro.bradamsang.radamsa.Radamsa;
@@ -7,7 +7,7 @@ import com.github.nscuro.bradamsang.util.BurpLogger;
 
 import java.io.IOException;
 
-public final class IntruderPayloadGenerator implements IIntruderPayloadGenerator {
+final class IntruderPayloadGenerator implements IIntruderPayloadGenerator {
 
     private final BurpLogger burpLogger;
     private final IntruderAttackSettings attackSettings;

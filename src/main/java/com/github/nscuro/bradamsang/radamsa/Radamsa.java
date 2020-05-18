@@ -1,7 +1,7 @@
 package com.github.nscuro.bradamsang.radamsa;
 
-import com.github.nscuro.bradamsang.io.CommandExecutor;
-import com.github.nscuro.bradamsang.io.ExecutionResult;
+import com.github.nscuro.bradamsang.command.CommandExecutor;
+import com.github.nscuro.bradamsang.command.ExecutionResult;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.IOException;
@@ -9,18 +9,32 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import static java.lang.String.format;
-
 public final class Radamsa {
 
     private final CommandExecutor commandExecutor;
     private final String radamsaPath;
 
+    /**
+     * @param commandExecutor The {@link CommandExecutor} to use
+     * @param radamsaPath     Path to the Radamsa executable
+     * @throws NullPointerException When either {@code commandExecutor} or {@code radamsaPath} are {@code null}
+     */
     public Radamsa(final CommandExecutor commandExecutor, final String radamsaPath) {
         this.commandExecutor = Objects.requireNonNull(commandExecutor);
         this.radamsaPath = Objects.requireNonNull(StringUtils.trimToNull(radamsaPath));
     }
 
+    /**
+     * Generate a test case based on a given sample or one or more sample files.
+     * <p>
+     * When both {@link RadamsaParameters#getSample()} and {@link RadamsaParameters#getSamplePaths()}
+     * are provided {@link RadamsaParameters#getSample()} takes precedence.
+     *
+     * @param parameters
+     * @return
+     * @throws RadamsaExecutionFailedException
+     * @throws IOException
+     */
     public byte[] fuzz(final RadamsaParameters parameters) throws IOException {
         if (parameters == null) {
             throw new IllegalArgumentException("No parameters provided");
@@ -50,6 +64,11 @@ public final class Radamsa {
                 .orElseThrow(IllegalStateException::new);
     }
 
+    /**
+     * @return
+     * @throws IOException
+     * @throws RadamsaExecutionFailedException
+     */
     public String getVersion() throws IOException {
         final List<String> command = List.of(radamsaPath, "-V");
         final ExecutionResult executionResult = commandExecutor.execute(command);
@@ -63,7 +82,7 @@ public final class Radamsa {
                 .map(output -> output.split(" ", 2))
                 .filter(outputParts -> outputParts.length == 2)
                 .map(outputParts -> outputParts[1])
-                .orElseThrow(() -> new RadamsaException(format("Missing or unexpected output for command %s", command)));
+                .orElseThrow(() -> new RadamsaException("Missing or unexpected output for command " + command));
     }
 
 }

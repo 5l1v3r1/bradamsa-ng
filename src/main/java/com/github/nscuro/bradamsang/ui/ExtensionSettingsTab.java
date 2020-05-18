@@ -1,28 +1,17 @@
-package com.github.nscuro.bradamsang;
+package com.github.nscuro.bradamsang.ui;
 
 import burp.ITab;
-import com.github.nscuro.bradamsang.io.ExecutionResult;
-import com.github.nscuro.bradamsang.io.NativeCommandExecutor;
-import com.github.nscuro.bradamsang.io.WslCommandExecutor;
+import com.github.nscuro.bradamsang.BurpExtension;
+import com.github.nscuro.bradamsang.ExtensionSettingsProvider;
+import com.github.nscuro.bradamsang.command.ExecutionResult;
+import com.github.nscuro.bradamsang.command.NativeCommandExecutor;
+import com.github.nscuro.bradamsang.command.WslCommandExecutor;
 import com.github.nscuro.bradamsang.util.BurpLogger;
 import com.github.nscuro.bradamsang.util.WslUtils;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-import java.util.regex.Pattern;
-import java.util.stream.Collectors;
+
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -39,6 +28,20 @@ import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingUtilities;
 import javax.swing.event.ChangeEvent;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public final class ExtensionSettingsTab implements ITab, ExtensionSettingsProvider {
 

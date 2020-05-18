@@ -1,4 +1,4 @@
-package com.github.nscuro.bradamsang.io;
+package com.github.nscuro.bradamsang.command;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

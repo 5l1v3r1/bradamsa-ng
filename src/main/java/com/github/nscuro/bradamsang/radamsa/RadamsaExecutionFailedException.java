@@ -1,6 +1,6 @@
 package com.github.nscuro.bradamsang.radamsa;
 
-import com.github.nscuro.bradamsang.io.ExecutionResult;
+import com.github.nscuro.bradamsang.command.ExecutionResult;
 
 import java.util.List;
 

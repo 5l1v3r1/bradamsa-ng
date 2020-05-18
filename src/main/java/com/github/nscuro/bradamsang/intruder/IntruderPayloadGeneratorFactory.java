@@ -1,11 +1,14 @@
-package com.github.nscuro.bradamsang;
+package com.github.nscuro.bradamsang.intruder;
 
 import burp.IIntruderAttack;
 import burp.IIntruderPayloadGenerator;
 import burp.IIntruderPayloadGeneratorFactory;
-import com.github.nscuro.bradamsang.io.CommandExecutor;
-import com.github.nscuro.bradamsang.io.NativeCommandExecutor;
-import com.github.nscuro.bradamsang.io.WslCommandExecutor;
+import com.github.nscuro.bradamsang.BurpExtension;
+import com.github.nscuro.bradamsang.ExtensionConfigurationException;
+import com.github.nscuro.bradamsang.ExtensionSettingsProvider;
+import com.github.nscuro.bradamsang.command.CommandExecutor;
+import com.github.nscuro.bradamsang.command.NativeCommandExecutor;
+import com.github.nscuro.bradamsang.command.WslCommandExecutor;
 import com.github.nscuro.bradamsang.radamsa.Radamsa;
 import com.github.nscuro.bradamsang.util.BurpLogger;
 
@@ -14,7 +17,7 @@ public final class IntruderPayloadGeneratorFactory implements IIntruderPayloadGe
     private final ExtensionSettingsProvider extensionSettingsProvider;
     private final BurpLogger burpLogger;
 
-    IntruderPayloadGeneratorFactory(final ExtensionSettingsProvider extensionSettingsProvider, final BurpLogger burpLogger) {
+    public IntruderPayloadGeneratorFactory(final ExtensionSettingsProvider extensionSettingsProvider, final BurpLogger burpLogger) {
         this.extensionSettingsProvider = extensionSettingsProvider;
         this.burpLogger = burpLogger;
     }

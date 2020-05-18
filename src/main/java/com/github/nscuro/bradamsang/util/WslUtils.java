@@ -1,7 +1,7 @@
 package com.github.nscuro.bradamsang.util;
 
-import com.github.nscuro.bradamsang.io.ExecutionResult;
-import com.github.nscuro.bradamsang.io.NativeCommandExecutor;
+import com.github.nscuro.bradamsang.command.ExecutionResult;
+import com.github.nscuro.bradamsang.command.NativeCommandExecutor;
 
 import java.io.IOException;
 import java.util.Arrays;

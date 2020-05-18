@@ -1,18 +1,18 @@
-package com.github.nscuro.bradamsang;
+package com.github.nscuro.bradamsang.intruder;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-final class IntruderAttackSettings {
+public final class IntruderAttackSettings {
 
     private final int payloadCount;
     private final List<String> samplePaths;
     private final boolean wslModeEnabled;
     private final String wslDistribution;
 
-    IntruderAttackSettings(final int payloadCount, final List<String> samplePaths,
-                           final boolean wslModeEnabled, final String wslDistribution) {
+    public IntruderAttackSettings(final int payloadCount, final List<String> samplePaths,
+                                  final boolean wslModeEnabled, final String wslDistribution) {
         this.payloadCount = payloadCount;
         this.samplePaths = samplePaths;
         this.wslModeEnabled = wslModeEnabled;

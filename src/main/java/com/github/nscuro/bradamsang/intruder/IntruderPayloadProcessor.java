@@ -1,6 +1,7 @@
-package com.github.nscuro.bradamsang;
+package com.github.nscuro.bradamsang.intruder;
 
 import burp.IIntruderPayloadProcessor;
+import com.github.nscuro.bradamsang.BurpExtension;
 import com.github.nscuro.bradamsang.radamsa.Radamsa;
 import com.github.nscuro.bradamsang.radamsa.RadamsaParameters;
 import com.github.nscuro.bradamsang.util.BurpLogger;
@@ -12,7 +13,7 @@ public final class IntruderPayloadProcessor implements IIntruderPayloadProcessor
     private final Radamsa radamsa;
     private final BurpLogger burpLogger;
 
-    IntruderPayloadProcessor(final Radamsa radamsa, final BurpLogger burpLogger) {
+    public IntruderPayloadProcessor(final Radamsa radamsa, final BurpLogger burpLogger) {
         this.radamsa = radamsa;
         this.burpLogger = burpLogger;
     }
@@ -28,14 +29,16 @@ public final class IntruderPayloadProcessor implements IIntruderPayloadProcessor
             throw new IllegalArgumentException("No current payload provided");
         }
 
-        final var radamsaParameters = new RadamsaParameters(currentPayload, null);
-
         final byte[] fuzzedValue;
         try {
-            fuzzedValue = radamsa.fuzz(radamsaParameters);
+            fuzzedValue = radamsa.fuzz(new RadamsaParameters(currentPayload, null));
         } catch (IOException e) {
             burpLogger.error(e);
             return currentPayload;
+        }
+
+        if (fuzzedValue == null) {
+            burpLogger.warn("Radamsa invocation did not produce any output");
         }
 
         return fuzzedValue;

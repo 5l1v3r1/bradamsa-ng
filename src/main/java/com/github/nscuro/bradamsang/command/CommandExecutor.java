@@ -1,4 +1,4 @@
-package com.github.nscuro.bradamsang.io;
+package com.github.nscuro.bradamsang.command;
 
 import java.io.IOException;
 import java.util.List;
