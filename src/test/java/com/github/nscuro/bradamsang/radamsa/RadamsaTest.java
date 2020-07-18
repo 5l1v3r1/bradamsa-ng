@@ -12,9 +12,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.io.IOException;
 import java.util.Optional;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
-import static org.assertj.core.api.Assertions.assertThatNullPointerException;
+import static org.assertj.core.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyList;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
@@ -104,7 +102,7 @@ class RadamsaTest {
             given(commandExecutorMock.execute(anyList()))
                     .willReturn(executionResultMock);
 
-            assertThatExceptionOfType(RadamsaException.class)
+            assertThatExceptionOfType(IOException.class)
                     .isThrownBy(() -> radamsa.getVersion());
         }
 

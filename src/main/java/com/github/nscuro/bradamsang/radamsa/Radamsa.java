@@ -28,12 +28,12 @@ public final class Radamsa {
      * Generate a test case based on a given sample or one or more sample files.
      * <p>
      * When both {@link RadamsaParameters#getSample()} and {@link RadamsaParameters#getSamplePaths()}
-     * are provided {@link RadamsaParameters#getSample()} takes precedence.
+     * are provided, {@link RadamsaParameters#getSample()} takes precedence.
      *
-     * @param parameters
-     * @return
-     * @throws RadamsaExecutionFailedException
-     * @throws IOException
+     * @param parameters A {@link RadamsaParameters} object
+     * @return The generated test case as byte array
+     * @throws RadamsaExecutionFailedException When Radamsa terminated with non-zero status code
+     * @throws IOException                     When the invocation of Radamsa failed
      */
     public byte[] fuzz(final RadamsaParameters parameters) throws IOException {
         if (parameters == null) {
@@ -65,9 +65,9 @@ public final class Radamsa {
     }
 
     /**
-     * @return
-     * @throws IOException
-     * @throws RadamsaExecutionFailedException
+     * @return The version of Radamsa
+     * @throws IOException                     When the invocation of Radamsa failed
+     * @throws RadamsaExecutionFailedException When Radamsa terminated with non-zero status code
      */
     public String getVersion() throws IOException {
         final List<String> command = List.of(radamsaPath, "-V");
@@ -82,7 +82,7 @@ public final class Radamsa {
                 .map(output -> output.split(" ", 2))
                 .filter(outputParts -> outputParts.length == 2)
                 .map(outputParts -> outputParts[1])
-                .orElseThrow(() -> new RadamsaException("Missing or unexpected output for command " + command));
+                .orElseThrow(() -> new IOException("Missing or unexpected output for command " + command));
     }
 
 }

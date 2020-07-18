@@ -22,13 +22,12 @@
 
 *bradamsa-ng* is a [Burp Suite](https://portswigger.net/burp/) extension that brings the power of the amazing 
 [Radamsa](https://gitlab.com/akihe/radamsa) fuzzer to Intruder. It is influenced by the original 
-[*bradamsa* by *ikkisoft*](https://github.com/ikkisoft/bradamsa) and aims to fix some of its weaknesses while building 
-upon its strengths.
+[*bradamsa* by *ikkisoft*](https://github.com/ikkisoft/bradamsa).
 
 One noteworthy feature of *bradamsa-ng* is its support for [WSL](https://docs.microsoft.com/en-us/windows/wsl/about).  
 Radamsa is (understandably) not developed with Windows in mind, which means that there is no official support for it. 
 There was a solution to [build Radamsa using Cygwin](https://github.com/aoh/radamsa/issues/31#issuecomment-266049451), 
-but it didn't reliably work for me - and there's simply no guarantee that it'll work forever.  
+but it didn't reliably work for me, and there's simply no guarantee that it'll work forever.  
   
 With WSL however, we can compile and run Radamsa in its natural habitat - hell, we can even run it from the Windows host:
 
@@ -44,10 +43,12 @@ With *bradamsa-ng*, these new possibilities can now be leveraged in Burp.
 ## Requirements
 
 * Java >= 11
-  * [Burp >= 2.0.14 ships with OpenJDK 11](https://twitter.com/Burp_Suite/status/1088829534600921090)
-  * [Burp >= 2020.4 requires Java >= 8](https://portswigger.net/burp/releases/professional-community-2020-4)
-  * [Java versions > 8 and < 11 are out of support](https://adoptopenjdk.net/support.html#roadmap)
+  * Why? Well...
+    * [Burp >= 2.0.14 ships with OpenJDK 11](https://twitter.com/Burp_Suite/status/1088829534600921090)
+    * [Burp >= 2020.4 requires Java >= 8](https://portswigger.net/burp/releases/professional-community-2020-4)
+    * [Java versions > 8 and < 11 are out of support](https://adoptopenjdk.net/support.html#roadmap)
 * Burp Suite >= 2.1
+* Radamsa >= 0.6
 
 ## Installation
 
@@ -61,6 +62,8 @@ With *bradamsa-ng*, these new possibilities can now be leveraged in Burp.
 *bradamsa-ng* tries to automatically detect a *Radamsa* binary in your `$PATH`. If this succeeds, you'll
 see a message saying 
 
+> WSL is not available
+> searching for Radamsa executable
 > Radamsa executable found at /usr/bin/radamsa
 
 in the extension's *Output* tab.
