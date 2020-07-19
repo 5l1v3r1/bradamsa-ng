@@ -147,7 +147,7 @@ will execute in order to make WSL mode possible:
 | --------------- | ----------------------------------------------------------- | ---------------------------------------------------- |
 | `where.exe`     | Checking if WSL installed                                   | `where.exe /q wsl.exe`                               |
 | `WMIC.exe`      | Determination of Windows 10 build number                    | `WMIC.exe os get version /format:LIST`               |
-| `wslconfig.exe` | Listing of available WSL distros                            | `wslconfig.exe /list`                                |
+| `wslconfig.exe` | Listing of available WSL distros (for Windows 10 < 1903)    | `wslconfig.exe /list`                                |
 | `wsl.exe`       | Listing available WSL distros; Execution of commands in WSL | `wsl.exe --list`, `wsl.exe -d <DISTRO> -e <COMMAND>` |
 
 ## FAQ
